@@ -1,0 +1,42 @@
+* How would you go about implementing custom segues?
+- Custom view controller containment
+- Animation
+- Wire up prepare/unwind
+
+* Is a presentation controller necessary and if so, how to use it?
+- More powerful custom view controller containment
+
+* Overview of adaptive modeling w/ Size Classes
+- Show Interface Builder
+- Font Size
+- Constraints
+
+* Cocoa controls
+- User versus program invoked value changes
+- IBDesignable
+- Normalized
+- Gesture Recognizers
+
+* Caching to the app or device while not on a network, what to consider before developing the app?
+- This highly depends on the type of application and data.
+- Assume all fetches are async (also good for not blocking main thread with file i/o)
+- Model objects have one memento (serialized) representation
+- If not using iCloud services - make your data source adaptor smart enough to go either network or disk.
+- SQL lite, user preferences, documents directory
+
+* What is the most efficient way to interact with a DB using Swift (We are Oracle here)?
+- Existing Obj-C wrapper?
+- C++ interop is not supported
+- Use Oracle's C API.
+- Macro functions are not supported
+- Write Swift structures as needed/desired to simplify the C API
+
+* Use of xcode plugins?  Are they necessary or recommended?
+- New. Wait to see what comes available.
+- Wants
+- jetbrains refactoring
+- Project/Dir sync
+- Autoformatter
+
+* Swift overlays for Framework
+- ?
