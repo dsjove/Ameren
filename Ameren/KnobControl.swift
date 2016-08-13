@@ -9,9 +9,10 @@
 import UIKit
 
 @IBDesignable
-public class KnobControl : UIControl, UIGestureRecognizerDelegate {
+public class KnobControl : UIControl {
 	
 	private var panRecognizer: UIPanGestureRecognizer!
+	private var doubleRecognizer: UITapGestureRecognizer!
 	
 	@IBInspectable
 	public var normalizedValue: CGFloat = 0.0 {
@@ -74,6 +75,12 @@ public class KnobControl : UIControl, UIGestureRecognizerDelegate {
 		self.clipsToBounds = false
 		panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panned))
 		self.addGestureRecognizer(panRecognizer)
+		panRecognizer.delegate = self
+		
+		doubleRecognizer = UITapGestureRecognizer(target: self, action: #selector(reset))
+		self.addGestureRecognizer(doubleRecognizer)
+		doubleRecognizer.numberOfTapsRequired = 2
+		doubleRecognizer.delegate = self
 	}
 	
 	@objc private func panned(_ pgr: UIPanGestureRecognizer) {
@@ -81,6 +88,11 @@ public class KnobControl : UIControl, UIGestureRecognizerDelegate {
 			let vp = pgr.velocity(in: self)
 			self.applyVelocity(velocity: vp.x)
 		}
+	}
+	
+	@objc private func reset(_ pgr: UITapGestureRecognizer) {
+		self.normalizedValue = 0.0
+		self.sendActions(for: .valueChanged)
 	}
 	
 	public override func draw(_ rect: CGRect) {
@@ -131,5 +143,11 @@ public class KnobControl : UIControl, UIGestureRecognizerDelegate {
 			let tick = CGRect(x: k.midX-thickness, y: k.minY+thickness*1.5, width: thickness*2.0, height: thickness*2.0)
 			context.fillEllipse(in: tick)
 		}
+	}
+}
+
+extension KnobControl : UIGestureRecognizerDelegate {
+	override public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+		return true
 	}
 }

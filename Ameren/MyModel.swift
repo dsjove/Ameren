@@ -9,6 +9,8 @@
 import Foundation
 import CoreLocation
 
+// https://github.com/ashleymills/Reachability.swift
+
 // struct or final allows the optimizer to consider inline optimizations
 final public class Address {
 // prefer immutable state
@@ -39,8 +41,20 @@ final public class Address {
 }
 
 // Easily mock/swap the extenal dependency for MyModel
-public protocol MyModelDelegate: class {
-	func fetchPlacment(location: CLLocationCoordinate2D, completion: (ServiceResult<Address>)->())
+public protocol MyModelDelegate: class, GeoService {
+	func save(mode: MyModel, completion: (()->())?)
+}
+
+extension MyModelDelegate {
+	public func fetchAddress(location: CLLocationCoordinate2D, completion: (ServiceResult<Address>)->()) {
+		completion(.failure(NSError(domain: "", code: 0, userInfo: nil)))
+	}
+	public func save(mode: MyModel, completion: (()->())?) {
+		completion?()
+	}
+	
+	public func doSomething() { // not polymorphic
+	}
 }
 
 final public class MyModel {
@@ -53,6 +67,35 @@ final public class MyModel {
 		function(5) // C functions
 		let _ = constant // C functions
 		self.location = location
+	}
+	
+	deinit {
+		// last ref is nil
+	}
+	
+	public func save(completion: (() -> ())? = nil) {
+		if let delegate = delegate {
+			delegate.save(mode: self, completion: completion)
+		}
+		else {
+			completion?()
+		}
+	}
+	
+	public convenience init?() throws {
+		let dfts = UserDefaults()
+		let value = dfts.value(forKey: "memento")
+		if let value = value as? JSONDictionary {
+			try self.init(memento: value)
+			return
+		}
+		return nil
+		
+/*
+		let dfts = UserDefaults()
+		dfts.set(self.memento, forKey: "memento")
+		dfts.synchronize()
+	*/
 	}
 	
 	public init(memento: JSONDictionary) throws {
@@ -70,7 +113,7 @@ final public class MyModel {
 		]
 	}
 	
-	public func update(completion: (MyModel)->()) {
+	public func update(completion: (MyModel)->()) -> Void {
 		if let delegate = delegate {
 			delegate.fetchPlacment(location: self.location) { (result) in
 				switch result {

@@ -31,7 +31,6 @@ public class PresentationController: UIPresentationController, UIAdaptivePresent
         let containerBounds = containerView!.bounds
         presentedViewFrame.size = size(forChildContentContainer: presentedViewController, withParentContainerSize: containerBounds.size)
         presentedViewFrame.origin.x = containerBounds.size.width - presentedViewFrame.size.width
-    
         return presentedViewFrame
     }
 	

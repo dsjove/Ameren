@@ -9,39 +9,11 @@
 import Foundation
 import CoreLocation
 
-// Apple's JSON representation
-public typealias JSONDictionary = [NSObject : AnyObject]
-
-// Simple Helper for JSON parsing
-func cast<T>(_ element: AnyObject?) throws -> T {
-	if let element = element as? T {
-		return element
-	}
-	throw NSError(domain: "", code: 0, userInfo:  nil)
+public protocol GeoService {
+	func fetchPlacment(location: CLLocationCoordinate2D, completion: (ServiceResult<Address>)->())
 }
 
-func cast<T>(_ element: AnyObject?, dft: T?) throws -> T? {
-	if element == nil || element is NSNull {
-		return dft
-	}
-	if let element = element as? T {
-		return element
-	}
-	throw NSError(domain: "", code: 0, userInfo:  nil)
-}
-
-public enum ServiceResult<T> {
-	case success(T)
-	case failure(NSError)
-}
-
-public class FileService: MyModelDelegate {
-	public func fetchPlacment(location: CLLocationCoordinate2D, completion: (ServiceResult<Address>)->()) {
-		completion(.failure(NSError(domain: "", code: 0, userInfo: nil)))
-	}
-}
-
-public class AppleService: MyModelDelegate {
+public class AppleService: GeoService {
 	public func fetchPlacment(location: CLLocationCoordinate2D, completion: (ServiceResult<Address>)->()) {
 		let location = CLLocation(latitude: location.latitude, longitude: location.longitude)
 		CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
@@ -63,7 +35,7 @@ public class AppleService: MyModelDelegate {
 	}
 }
 
-public class GoogleService: MyModelDelegate {
+public class GoogleService: GeoService {
 	public func fetchPlacment(location: CLLocationCoordinate2D, completion: (ServiceResult<Address>)->()) {
 		let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
 		let apikey = "AIzaSyDD2cdvsUovQ8lxtxSHzwxVuPlsmfa1Amo"

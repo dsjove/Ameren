@@ -8,6 +8,13 @@
 
 import UIKit
 
+extension UIStoryboard {
+	public func instantiateViewController<T: UIViewController>(withIdentifier identifier: String = String(T.self)) -> T {
+		let vc = self.instantiateViewController(withIdentifier: identifier) as! T
+		return vc
+	}
+}
+
 class DetailViewController: UIViewController {
 
     let TransitionDelegate = TransitioningDelegate()
@@ -29,6 +36,12 @@ class DetailViewController: UIViewController {
 	
 	func configureView() {
 		detailDescriptionLabel.text = detailItem?.description ?? "None"
+	}
+	
+	@IBAction func modal(sender: AnyObject!) {
+		let vc: InteractionViewController = self.storyboard!.instantiateViewController()
+		vc.m = 9
+        present(vc, animated: true, completion: nil)
 	}
 	
 	@IBAction func infoButtonWasTapped(sender: UIButton) {

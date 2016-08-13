@@ -23,6 +23,11 @@
 		5544707F1D5A559F00D12A3D /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5544707E1D5A559F00D12A3D /* PresentationController.swift */; };
 		554470851D5A588D00D12A3D /* ReplaceTopSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554470841D5A588D00D12A3D /* ReplaceTopSegue.swift */; };
 		554470871D5A7E9400D12A3D /* GeoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554470861D5A7E9400D12A3D /* GeoService.swift */; };
+		555D3E121D5E32E5005A375A /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D3E111D5E32E5005A375A /* Locations.swift */; };
+		555D3E141D5E33D2005A375A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 555D3E131D5E33D2005A375A /* Localizable.strings */; };
+		555D3E161D5E8E94005A375A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D3E151D5E8E94005A375A /* UIView+.swift */; };
+		555D3E181D5E8F6C005A375A /* ReadWriteMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D3E171D5E8F6C005A375A /* ReadWriteMutex.swift */; };
+		555D3E1A1D5E905E005A375A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D3E191D5E905E005A375A /* JSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,11 @@
 		5544707E1D5A559F00D12A3D /* PresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		554470841D5A588D00D12A3D /* ReplaceTopSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceTopSegue.swift; sourceTree = "<group>"; };
 		554470861D5A7E9400D12A3D /* GeoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoService.swift; sourceTree = "<group>"; };
+		555D3E111D5E32E5005A375A /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		555D3E131D5E33D2005A375A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		555D3E151D5E8E94005A375A /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		555D3E171D5E8F6C005A375A /* ReadWriteMutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteMutex.swift; sourceTree = "<group>"; };
+		555D3E191D5E905E005A375A /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,12 @@
 				554470801D5A55EF00D12A3D /* Resources */,
 				554470821D5A563300D12A3D /* Model */,
 				554470831D5A570C00D12A3D /* ViewControllers */,
+				555D3E1B1D5E9474005A375A /* PresentationController */,
+				554470861D5A7E9400D12A3D /* GeoService.swift */,
+				555D3E111D5E32E5005A375A /* Locations.swift */,
+				555D3E151D5E8E94005A375A /* UIView+.swift */,
+				555D3E191D5E905E005A375A /* JSON.swift */,
+				555D3E171D5E8F6C005A375A /* ReadWriteMutex.swift */,
 				554470731D5A553F00D12A3D /* KnobControl.swift */,
 			);
 			path = Ameren;
@@ -94,6 +110,7 @@
 				554470601D5A549C00D12A3D /* Assets.xcassets */,
 				554470621D5A549C00D12A3D /* LaunchScreen.storyboard */,
 				554470651D5A549C00D12A3D /* Info.plist */,
+				555D3E131D5E33D2005A375A /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -114,7 +131,6 @@
 				5544706E1D5A553F00D12A3D /* CCode.h */,
 				5544706D1D5A553F00D12A3D /* CCode.c */,
 				554470741D5A553F00D12A3D /* MyModel.swift */,
-				554470861D5A7E9400D12A3D /* GeoService.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -125,12 +141,19 @@
 				554470591D5A549C00D12A3D /* MasterViewController.swift */,
 				5544705B1D5A549C00D12A3D /* DetailViewController.swift */,
 				554470721D5A553F00D12A3D /* InteractionViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		555D3E1B1D5E9474005A375A /* PresentationController */ = {
+			isa = PBXGroup;
+			children = (
 				554470841D5A588D00D12A3D /* ReplaceTopSegue.swift */,
 				554470711D5A553F00D12A3D /* TransitioningDelegate.swift */,
 				554470701D5A553F00D12A3D /* AnimatedTransitioning.swift */,
 				5544707E1D5A559F00D12A3D /* PresentationController.swift */,
 			);
-			name = ViewControllers;
+			name = PresentationController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +219,7 @@
 			files = (
 				554470641D5A549C00D12A3D /* LaunchScreen.storyboard in Resources */,
 				554470611D5A549C00D12A3D /* Assets.xcassets in Resources */,
+				555D3E141D5E33D2005A375A /* Localizable.strings in Resources */,
 				5544705F1D5A549C00D12A3D /* Main.storyboard in Resources */,
 				5544707D1D5A553F00D12A3D /* Overview in Resources */,
 			);
@@ -210,16 +234,20 @@
 			files = (
 				5544707B1D5A553F00D12A3D /* KnobControl.swift in Sources */,
 				5544705C1D5A549C00D12A3D /* DetailViewController.swift in Sources */,
+				555D3E161D5E8E94005A375A /* UIView+.swift in Sources */,
 				5544707A1D5A553F00D12A3D /* InteractionViewController.swift in Sources */,
 				554470851D5A588D00D12A3D /* ReplaceTopSegue.swift in Sources */,
+				555D3E121D5E32E5005A375A /* Locations.swift in Sources */,
 				554470781D5A553F00D12A3D /* AnimatedTransitioning.swift in Sources */,
 				5544707F1D5A559F00D12A3D /* PresentationController.swift in Sources */,
 				5544705A1D5A549C00D12A3D /* MasterViewController.swift in Sources */,
+				555D3E181D5E8F6C005A375A /* ReadWriteMutex.swift in Sources */,
 				554470871D5A7E9400D12A3D /* GeoService.swift in Sources */,
 				554470791D5A553F00D12A3D /* TransitioningDelegate.swift in Sources */,
 				5544707C1D5A553F00D12A3D /* MyModel.swift in Sources */,
 				554470761D5A553F00D12A3D /* CCode.c in Sources */,
 				554470581D5A549C00D12A3D /* AppDelegate.swift in Sources */,
+				555D3E1A1D5E905E005A375A /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

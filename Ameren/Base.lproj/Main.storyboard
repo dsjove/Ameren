@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11185.3" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11191" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11151.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -55,13 +55,21 @@
                                     <action selector="infoButtonWasTappedWithSender:" destination="JEX-9P-axG" eventType="touchUpInside" id="JIE-29-zUN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-MK-ut5">
+                                <state key="normal" title="Modal"/>
+                                <connections>
+                                    <action selector="modalWithSender:" destination="JEX-9P-axG" eventType="touchUpInside" id="187-fM-O3Y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="aNP-MK-ut5" firstAttribute="top" secondItem="aQ7-VK-Cz0" secondAttribute="bottom" constant="8" id="BH6-CZ-Klb"/>
                             <constraint firstItem="fye-s1-WU4" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="Bpt-fr-ZFd"/>
                             <constraint firstItem="aQ7-VK-Cz0" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="EXH-Jc-MYq"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="kx4-gi-3bH"/>
+                            <constraint firstItem="aNP-MK-ut5" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="lUC-8i-4ge"/>
                             <constraint firstItem="fye-s1-WU4" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="shO-LF-fYm"/>
                             <constraint firstItem="aQ7-VK-Cz0" firstAttribute="top" secondItem="fye-s1-WU4" secondAttribute="bottom" constant="8" id="vzY-5o-1Eq"/>
                         </constraints>
@@ -100,7 +108,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Arm-wq-HPj" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
-                                <frame key="frameInset" minY="86" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -155,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
-        <!--Detail-->
+        <!--Interactice-->
         <scene sceneID="ji0-82-9av">
             <objects>
-                <viewController restorationIdentifier="InteractionViewController" storyboardIdentifier="InteractionViewController" title="Detail" id="eE1-xr-nD4" customClass="InteractionViewController" customModule="Ameren" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="InteractionViewController" storyboardIdentifier="InteractionViewController" title="Interactice" id="eE1-xr-nD4" customClass="InteractionViewController" customModule="Ameren" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qgX-ik-v3B"/>
                         <viewControllerLayoutGuide type="bottom" id="M6g-ue-b7c"/>
@@ -167,17 +175,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="0.0" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="u8f-0U-owL">
+                            <label clipsSubviews="YES" contentMode="scaleToFill" text="0.0" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="u8f-0U-owL">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" size="system"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact">
+                                    <color key="textColor" red="1" green="0.24659001836284467" blue="0.47750561339533082" alpha="1" colorSpace="calibratedRGB"/>
+                                </variation>
                                 <variation key="heightClass=compact-widthClass=compact">
                                     <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="56G-dF-Kau" appends="YES" id="eTd-gf-lfp"/>
+                                </connections>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpV-tK-bUU">
                                 <state key="normal" title="Unwind"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="roundedCorner">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="u43-Vj-zqc" kind="unwind" unwindAction="unwindDetailWithUnwindSegue:" id="DSv-gv-i9c"/>
                                 </connections>
@@ -249,7 +272,7 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="Yqt-Bg-L7j"/>
+                    <navigationItem key="navigationItem" title="Interactive" id="Yqt-Bg-L7j"/>
                     <connections>
                         <outlet property="addressLabel" destination="68G-8o-fJs" id="XeV-bu-Zwb"/>
                         <outlet property="valueLabel" destination="u8f-0U-owL" id="KYE-ga-ndi"/>
@@ -257,8 +280,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X8s-Wj-CIE" sceneMemberID="firstResponder"/>
                 <exit id="u43-Vj-zqc" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="56G-dF-Kau">
+                    <connections>
+                        <action selector="doLocationWithSender:" destination="eE1-xr-nD4" id="Tb4-Jn-CHz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1630.6640625" y="127.34375"/>
+            <point key="canvasLocation" x="1629.5999999999999" y="127.28635682158921"/>
         </scene>
     </scenes>
     <resources>

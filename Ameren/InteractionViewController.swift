@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class InteractionViewController: UIViewController, CLLocationManagerDelegate {
+class InteractionViewController: UIViewController  {
 
 	@IBOutlet weak var valueLabel: UILabel!
 	@IBOutlet weak var addressLabel: UILabel!
@@ -18,8 +18,27 @@ class InteractionViewController: UIViewController, CLLocationManagerDelegate {
 	let locationManager = CLLocationManager()
 	let geoService = AppleService()
 	
+	var m: Int? {
+		didSet {
+			updateUI()
+		}
+	}
+	
+	func updateUI() {
+		if self.isViewLoaded {
+			if let m = self.m {
+				self.view.backgroundColor = UIColor.blue
+				self.valueLabel.text = m.description
+			}
+			else {
+				self.valueLabel.text = "None"
+			}
+		}
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
+			updateUI()
 		
 		locationManager.requestWhenInUseAuthorization()
 		
@@ -29,20 +48,9 @@ class InteractionViewController: UIViewController, CLLocationManagerDelegate {
 			locationManager.startUpdatingLocation()
 			if let userLocation = locationManager.location {
 				model = MyModel(location: userLocation.coordinate)
-				model.delegate = geoService
+				model.delegate = self
 			}
 		}
-    }
-	
-	public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		if let userLocation = locations.first {
-			model = MyModel(location: userLocation.coordinate)
-			model.delegate = geoService
-		}
-	}
-	
-	public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		locationManager.startUpdatingLocation()
     }
 	
 	@IBAction func controlChange(sender: AnyObject!) {
@@ -55,4 +63,22 @@ class InteractionViewController: UIViewController, CLLocationManagerDelegate {
 			self?.addressLabel.text = model.address?.street ?? "None"
 		}
 	}
+}
+
+extension InteractionViewController: CLLocationManagerDelegate, MyModelDelegate {
+
+	public func fetchPlacment(location: CLLocationCoordinate2D, completion: (ServiceResult<Address>)->()) {
+		self.geoService.fetchPlacment(location: location, completion: completion)
+	}
+	
+	public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		if let userLocation = locations.first {
+			model = MyModel(location: userLocation.coordinate)
+			model.delegate = self
+		}
+	}
+	
+	public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+		locationManager.startUpdatingLocation()
+    }
 }
